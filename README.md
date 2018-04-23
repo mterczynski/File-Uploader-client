@@ -1,6 +1,6 @@
 # FileUploaderClient
 
-<img src="https://github.com/mterczynski/File-Uploader-client/blob/master/assets/preview.PNG">
+<img src="https://github.com/mterczynski/File-Uploader-client/blob/master/preview.PNG">
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
 
