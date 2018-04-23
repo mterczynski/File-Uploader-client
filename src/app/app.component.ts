@@ -1,6 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
 declare var $: any;
+
+enum uploadState {
+  before = 'before',
+  uploading = 'uploading',
+  finished = 'finished',
+  error = 'error'
+}
 
 @Component({
   selector: 'app-root',
@@ -15,6 +22,8 @@ export class AppComponent {
   isModalAnimationVisible = false;
   isUploadLinkHovered = false;
   selectedFiles: FileList;
+  uploadState: uploadState = uploadState.before;
+  uploadPercentage = '0';
 
   constructor(private http: HttpClient) {}
 
@@ -27,18 +36,25 @@ export class AppComponent {
 
   onUpload() {
     const formData = new FormData();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
     Array.from(this.selectedFiles).forEach((file) => {
       formData.append('files[]', file, file.name);
     });
-    this.http.post('http://localhost/fileUpload', formData, httpOptions).subscribe((res) => {
-      console.log(res);
+
+    this.uploadState = uploadState.uploading;
+
+    const req = new HttpRequest('POST', 'http://localhost/fileUpload', formData, {
+      reportProgress: true,
+    });
+
+    this.http.request(req).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.uploadPercentage = (100 * event.loaded / event.total).toFixed(2);
+      } else if (event instanceof HttpResponse) {
+        this.uploadState = uploadState.finished;
+      }
     }, (err) => {
       console.error(err);
+      this.uploadState = uploadState.error;
     });
   }
 
@@ -48,6 +64,8 @@ export class AppComponent {
 
   showModal() {
     $('#modal').modal();
+    this.uploadState = uploadState.before;
+    this.uploadPercentage = '0';
   }
 
   uploadLinkMouseleave() {

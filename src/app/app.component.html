@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form style="position: relative;" #fileModalForm = "ngForm">
+        <form style="position: relative;" #fileModalForm = "ngForm" method="post" enctype="multipart/form-data">
           <div class="card border-info mb-3">
             <div class="card-header">Files:</div>
             <div class="card-body text-info">
@@ -58,9 +58,21 @@
         </ul> -->
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" [disabled]="fileModalForm.invalid" (click)="onUpload()">Upload</button>
+      <div class="modal-footer" [ngSwitch]="uploadState">
+        <ng-container *ngIf="uploadState == 'uploading' || uploadState == 'finished'">
+          <div class="progress modal__progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+             [style.width]="uploadPercentage + '%'">{{uploadPercentage}}%</div>
+          </div>
+        </ng-container>
+        <span style="color: red;" *ngIf="uploadState == 'error'">
+          File upload error occurred
+        </span>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" *ngIf="uploadState != 'uploading'">
+          Close
+        </button>
+        <button *ngSwitchCase="'before'" type="button" class="btn btn-primary"
+          [disabled]="fileModalForm.invalid" (click)="onUpload()">Upload</button>
       </div>
     </div>
   </div>
@@ -84,8 +96,6 @@
         <span class="nav-link" [ngClass]="{linkHovered: isUploadLinkHovered}">
           <i class="fa fa-upload navIcon" aria-hidden="true"></i> Upload
         </span>
-
-        <!-- <a class="nav-link" href="upload"><i class="fa fa-upload navIcon" aria-hidden="true"></i> Upload</a> -->
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="account"><i class="fa fa-user-o navIcon" aria-hidden="true"></i> My account</a>
