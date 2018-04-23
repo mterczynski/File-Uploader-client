@@ -1,0 +1,60 @@
+@import 'shared/styles/_variables.scss';
+@import 'shared/styles/_breakpoints.scss';
+
+.navbar{
+    z-index: 2;
+}
+
+.navIcon{
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+@media (min-width: $breakpoint-medium) {
+    .nav-item{
+        margin-right: 60px;
+        &:first-child{
+            margin-left: 60px;
+        }
+    }
+    .navIcon{
+        font-size: 1.5em;
+        margin-right: 5px;
+    }
+}
+
+.nav-link{
+    cursor: pointer;
+}
+
+.nav-item{
+    position: relative;
+}
+
+.form-group.row{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.fileInput{
+    opacity: 0;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+}
+
+::-webkit-file-upload-button {
+    cursor:pointer;
+}
+
+.linkHovered{
+    color: white !important;
+}
+
+.pointer{
+    cursor: pointer !important;
+}

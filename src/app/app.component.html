@@ -1,0 +1,103 @@
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">File uploading</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form style="position: relative;" #fileModalForm = "ngForm">
+          <div class="card border-info mb-3">
+            <div class="card-header">Files:</div>
+            <div class="card-body text-info">
+              <!-- <h4 class="card-title">Info card title</h4> -->
+              <div class="card-text">
+                <table class="table table-hover">
+                  <tr *ngFor="let file of selectedFiles">
+                    <td>{{file.name}}</td>
+                    <td>
+                      <app-ext-icon [attr.fileName] = "file.name"></app-ext-icon>
+                    </td>
+                    <td>{{ file.size | fileSize }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label>File name:</label><input type="text" value="plik" name="fileName" class="form-control" required ngModel>
+          </div> -->
+
+          <!-- <div class="form-group row">
+            <label>File extension:</label><input type="text" placeholder=".md" disabled class="form-control">
+          </div> -->
+
+          <div class="form-group row">
+            <label>Add tags:</label><input type="text" placeholder="tag1, tag2" class="form-control">
+          </div>
+        </form>
+
+        <!-- Paginator: -->
+        <!-- <ul class="pagination" *ngIf="selectedFiles.length>0">
+          <li class="page-item disabled">
+            <a class="page-link" href="#">&laquo;</a>
+          </li>
+          <li class="page-item"
+            *ngFor="let file of selectedFiles; let index = index"
+            [ngClass]="{'active': comparePaginatorIndex(index) }">
+
+            <a class="page-link" href="#">{{index + 1}}</a>
+
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">&raquo;</a>
+          </li>
+        </ul> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="fileModalForm.invalid" (click)="onUpload()">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar: -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/">File Uploader</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/"><i class="fa fa-home navIcon" aria-hidden="true"></i> Home</a>
+      </li>
+      <li class="nav-item pointer" (mouseover)="uploadLinkMouseover()" (mouseleave)="uploadLinkMouseleave()">
+        <input #fileInput type="file" class="fileInput pointer" multiple
+        (change)="fileInputChange($event)">
+        <span class="nav-link" [ngClass]="{linkHovered: isUploadLinkHovered}">
+          <i class="fa fa-upload navIcon" aria-hidden="true"></i> Upload
+        </span>
+
+        <!-- <a class="nav-link" href="upload"><i class="fa fa-upload navIcon" aria-hidden="true"></i> Upload</a> -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="account"><i class="fa fa-user-o navIcon" aria-hidden="true"></i> My account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="help"><i class="fa fa-question-circle navIcon" aria-hidden="true"></i> Help</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="search"><i class="fa fa-search navIcon" aria-hidden="true"></i> Search</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

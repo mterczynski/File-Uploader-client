@@ -1,0 +1,67 @@
+:host{
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+// When no matched extension:
+:host::before{ content:url('/../../../assets/extIcons/default_file.svg'); }
+
+// Sorted by: number of subextensions, a-z, A-Z:
+
+// -- No extensions:
+:host[fileName$="LICENSE"]::before { content:url('/../../../assets/extIcons/file_type_license.svg'); }
+
+// -- No subextensions:
+:host[fileName$=".7z"]::before { content:url('/../../../assets/extIcons/file_type_package.svg'); }
+:host[fileName$=".accdb"]::before { content:url('/../../../assets/extIcons/file_type_access.svg'); }
+:host[fileName$=".cpp"]::before { content:url('/../../../assets/extIcons/file_type_cpp.svg'); }
+:host[fileName$=".cs"]::before { content:url('/../../../assets/extIcons/file_type_csharp.svg'); }
+:host[fileName$=".css"]::before { content:url('/../../../assets/extIcons/file_type_css.svg'); }
+:host[fileName$=".doc"]::before { content:url('/../../../assets/extIcons/file_type_word.svg'); }
+:host[fileName$=".docx"]::before { content:url('/../../../assets/extIcons/file_type_word.svg'); }
+:host[fileName$=".editorconfig"]::before { content:url('/../../../assets/extIcons/file_type_editorconfig.svg'); }
+:host[fileName$=".gif"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+:host[fileName$=".gitignore"]::before { content:url('/../../../assets/extIcons/file_type_git2.svg'); }
+:host[fileName$=".gitkeep"]::before { content:url('/../../../assets/extIcons/file_type_git2.svg'); }
+:host[fileName$=".gitmodules"]::before { content:url('/../../../assets/extIcons/file_type_git2.svg'); }
+:host[fileName$=".gradle"]::before { content:url('/../../../assets/extIcons/file_type_gradle.svg'); }
+:host[fileName$=".ini"]::before { content:url('/../../../assets/extIcons/file_type_ini.svg'); }
+:host[fileName$=".jar"]::before { content:url('/../../../assets/extIcons/file_type_jar.svg'); }
+:host[fileName$=".java"]::before { content:url('/../../../assets/extIcons/file_type_java.svg'); }
+:host[fileName$=".jpg"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+:host[fileName$=".js"]::before { content:url('/../../../assets/extIcons/file_type_js.svg'); }
+:host[fileName$=".json"]::before { content:url('/../../../assets/extIcons/file_type_json.svg'); }
+:host[fileName$=".less"]::before { content:url('/../../../assets/extIcons/file_type_less.svg'); }
+:host[fileName$=".log"]::before { content:url('/../../../assets/extIcons/file_type_log.svg'); }
+:host[fileName$=".md"]::before { content:url('/../../../assets/extIcons/file_type_markdown.svg'); }
+:host[fileName$=".mp3"]::before { content:url('/../../../assets/extIcons/file_type_audio.svg'); }
+:host[fileName$=".mp4"]::before { content:url('/../../../assets/extIcons/file_type_video.svg'); }
+:host[fileName$=".png"]::before { content:url('/../../../assets/extIcons/file_type_pdf.svg'); }
+:host[fileName$=".png"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+:host[fileName$=".py"]::before { content:url('/../../../assets/extIcons/file_type_python.svg'); }
+:host[fileName$=".rar"]::before { content:url('/../../../assets/extIcons/file_type_package.svg'); }
+:host[fileName$=".sass"]::before { content:url('/../../../assets/extIcons/file_type_sass.svg'); }
+:host[fileName$=".scss"]::before { content:url('/../../../assets/extIcons/file_type_scss.svg'); }
+:host[fileName$=".svg"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+:host[fileName$=".sqf"]::before { content:url('/../../../assets/extIcons/file_type_sqf.svg'); }
+:host[fileName$=".sql"]::before { content:url('/../../../assets/extIcons/file_type_sql.svg'); }
+:host[fileName$=".tfs"]::before { content:url('/../../../assets/extIcons/file_type_tfs.svg'); }
+:host[fileName$=".txt"]::before { content:url('/../../../assets/extIcons/file_type_text.svg'); }
+:host[fileName$=".woff2"]::before { content:url('/../../../assets/extIcons/file_type_font.svg'); }
+:host[fileName$=".zip"]::before { content:url('/../../../assets/extIcons/file_type_package.svg'); }
+:host[fileName$=".xlsx"]::before { content:url('/../../../assets/extIcons/file_type_excel.svg'); }
+:host[fileName$=".xml"]::before { content:url('/../../../assets/extIcons/file_type_xml.svg'); }
+:host[fileName$=".yaml"]::before { content:url('/../../../assets/extIcons/file_type_yaml.svg'); }
+:host[fileName$=".JPG"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+:host[fileName$=".PNG"]::before { content:url('/../../../assets/extIcons/file_type_image.svg'); }
+
+// -- One subextension:
+:host[fileName$=".angular-cli.json"]::before { content:url('/../../../assets/extIcons/file_type_angular.svg'); }
+:host[fileName$="favicon.ico"]::before { content:url('/../../../assets/extIcons/file_type_favicon.svg'); }
+:host[fileName$="tsconfig.json"]::before { content:url('/../../../assets/extIcons/file_type_tsconfig.svg'); }
+:host[fileName$="tslint.json"]::before { content:url('/../../../assets/extIcons/file_type_tslint.svg'); }
+:host[fileName$="yarn.lock"]::before { content:url('/../../../assets/extIcons/file_type_yarn.svg'); }
+
+// -- Two subextensions:
+:host[fileName$="protractor.conf.js"]::before { content:url('/../../../assets/extIcons/file_type_protractor.svg'); }
