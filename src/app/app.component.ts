@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
+import { environment } from '../environments/environment';
 declare var $: any;
 
 enum uploadState {
@@ -57,7 +58,7 @@ export class AppComponent implements OnInit {
 
     this.uploadState = uploadState.uploading;
 
-    const req = new HttpRequest('POST', 'http://localhost/fileUpload', formData, {
+    const req = new HttpRequest('POST', 'http://' +  environment.apiUrl + '/fileUpload', formData, {
       reportProgress: true
     });
 
