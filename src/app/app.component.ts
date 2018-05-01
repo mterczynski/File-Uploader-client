@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 
     this.uploadState = uploadState.uploading;
 
-    const req = new HttpRequest('POST', 'http://' +  environment.apiUrl + '/fileUpload', formData, {
+    const req = new HttpRequest('POST', environment.apiUrl + '/fileUpload', formData, {
       reportProgress: true
     });
 

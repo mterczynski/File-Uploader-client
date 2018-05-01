@@ -17,14 +17,13 @@ export class HomeComponent implements OnInit {
   selectedFiles: File[] = [];
   selectedFileIndex = 3;
   fileList = [];
-  serverUrl = 'http://' + environment.apiUrl;
+  serverUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.http.get(this.serverUrl + '/files').subscribe((data) => {
       this.fileList = <any[]>data;
-      console.log(this.fileList);
       this.fileList.forEach((file) => {
         // const offset = 60000 * (new Date().getTimezoneOffset());
         file.uploadDate = new Date(new Date(file.uploadDate).getTime());
