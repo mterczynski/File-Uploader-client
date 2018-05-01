@@ -1,7 +1,6 @@
 export interface UploaderFile {
     name: string;
     tags: [string];
-    author: string;
-    date: Date;
+    jwtToken?: string;
     size: number;
 }

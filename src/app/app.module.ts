@@ -14,6 +14,7 @@ import { ExtIconComponent } from './shared/components/extIcon.component';
 
 // pipes:
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FileSizePipe } from './shared/pipes/file-size.pipe';
     AccountComponent,
     SearchComponent,
     ExtIconComponent,
-    FileSizePipe
+    FileSizePipe,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

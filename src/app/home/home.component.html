@@ -1,20 +1,3 @@
-<!-- <div (click)="onModalContainerClicked($event)" class="modal fade" tabindex="-1" [ngClass]="{'in': isModalAnimationVisible}"
-     [ngStyle]="{'display': isModalVisible ? 'block' : 'none', 'opacity': isModalAnimationVisible ? 1 : 0}">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <ng-content select=".app-modal-header"></ng-content>
-      </div>
-      <div class="modal-body">
-        <ng-content select=".app-modal-body"></ng-content>
-      </div>
-      <div class="modal-footer">
-        <ng-content select=".app-modal-footer"></ng-content>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="table-responsive">
     <table class="table table-hover">
@@ -29,32 +12,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Test word file</td>
-          <td>
-            <app-ext-icon fileName="main.docx"></app-ext-icon>
-          </td>
-          <td>3MB</td>
-          <td>
-            <span class="tag">#tag1</span>,
-            <span class="tag">#tag2</span>
-          </td>
-          <td>2m</td>
-          <td>mike</td>
-        </tr>
-        <tr>
-          <td>main.py</td>
-          <td>
-            <app-ext-icon fileName="main.py"></app-ext-icon>
-          </td>
-          <td>34KB</td>
-          <td>
-            <span class="tag">#tag1</span>,
-            <span class="tag">#tag2</span>
-          </td>
-          <td>3d 2h</td>
-          <td>john</td>
-        </tr>
+
+          <tr *ngFor="let file of fileList">
+            <td>
+              <a  href="{{serverUrl + '/file/' + file.path}}" target="blank">
+                {{file.name}}
+              </a>
+            </td>
+
+            <td>
+              <app-ext-icon [attr.fileName]=file.name></app-ext-icon>
+            </td>
+            <td>{{file.size | fileSize}}</td>
+            <td>
+              <span *ngFor="let tag of file.tags; let isLast=last">
+                <span class="tag">#{{tag}}</span>
+                <span>{{isLast ? '' : ', '}}</span>
+              </span>
+            </td>
+            <td>{{file.uploadDate | timeAgo}}</td>
+            <td>-</td>
+          </tr>
+
       </tbody>
     </table>
   </div>

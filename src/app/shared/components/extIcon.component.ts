@@ -7,6 +7,5 @@ import { Component, Input, HostBinding } from '@angular/core';
 })
 export class ExtIconComponent {
   @Input() fileName: string;
-  @Input() foo: string;
   @HostBinding('class.extIcon') true;
 }

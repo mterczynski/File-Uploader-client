@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 declare let $: any; // jquery for bootstrap
 
 @Component({
@@ -14,15 +16,20 @@ export class HomeComponent implements OnInit {
   isModalAnimationVisible = false;
   selectedFiles: File[] = [];
   selectedFileIndex = 3;
+  fileList = [];
+  serverUrl = 'http://' + environment.apiUrl;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-  }
-
-  afterModalClose() {
-    console.log('after modal close');
-    console.log(this.fileInput.nativeElement);
+    this.http.get(this.serverUrl + '/files').subscribe((data) => {
+      this.fileList = <any[]>data;
+      console.log(this.fileList);
+      this.fileList.forEach((file) => {
+        // const offset = 60000 * (new Date().getTimezoneOffset());
+        file.uploadDate = new Date(new Date(file.uploadDate).getTime());
+      });
+    });
   }
 
   comparePaginatorIndex(index: number) {
@@ -32,24 +39,6 @@ export class HomeComponent implements OnInit {
       return false;
     }
   }
-
-  // triggerInputClick() {
-  //   const event = new MouseEvent('click', {
-  //     view: window,
-  //     bubbles: true,
-  //     cancelable: true
-  //   });
-  //   // event.eventName = 'click';
-
-  //   var cancelled = !this.fileInput.nativeElement.dispatchEvent(event);
-  //   if (cancelled) {
-  //     // A handler called preventDefault.
-  //     alert("cancelled");
-  //   } else {
-  //     // None of the handlers called preventDefault.
-  //     alert("not cancelled");
-  //   }
-  // }
 
   showModal() {
     $('#modal').modal();
