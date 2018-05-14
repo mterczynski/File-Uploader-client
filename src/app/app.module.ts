@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { HelpComponent } from './help/help.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AccountComponent } from './account/account.component';
 import { SearchComponent } from './search/search.component';
@@ -20,7 +19,6 @@ import { TimeAgoPipe } from 'time-ago-pipe';
   declarations: [
     AppComponent,
     HomeComponent,
-    HelpComponent,
     AccountComponent,
     SearchComponent,
     ExtIconComponent,
