@@ -7,6 +7,6 @@ export class AuthService {
 
   }
 
-  isLoggedIn = false; // mock
+  isLoggedIn = true; // mock
 
 }

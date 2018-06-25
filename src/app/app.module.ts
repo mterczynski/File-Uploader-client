@@ -17,6 +17,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { AuthService } from './shared/services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CustomizeComponent } from './customize/customize.component';
+import { ThemerService } from './shared/services/themer.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     FileSizePipe,
     TimeAgoPipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomizeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ThemerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

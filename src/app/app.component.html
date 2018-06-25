@@ -76,8 +76,15 @@
           Upload
         </span>
       </li>
+      <!-- Customize -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/customize">
+          <i class="fa fa-magic navIcon" aria-hidden="true"></i>
+          Customize
+        </a>
+      </li>
 
-
+      <!-- Login/register/account/log out: -->
       <li class="nav-item" *ngIf="!isLoggedIn && isLoggedIn !== null">
         <a class="nav-link" routerLink="/login">
           <i class="fa fa-sign-in navIcon" aria-hidden="true"></i>
@@ -97,6 +104,13 @@
           <i class="fa fa-user navIcon" aria-hidden="true">
           </i>Account
         </a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLoggedIn && isLoggedIn !== null">
+        <span class="nav-link" routerLink="/account">
+          <i class="fa fa-sign-out navIcon" aria-hidden="true">
+          </i>Log out
+        </span>
       </li>
 
       <!-- <li class="nav-item">
