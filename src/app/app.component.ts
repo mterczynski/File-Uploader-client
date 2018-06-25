@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { AuthService } from './shared/services/auth.service';
 declare var $: any;
 
 enum uploadState {
@@ -27,13 +28,16 @@ export class AppComponent implements OnInit {
   uploadState: uploadState = uploadState.before;
   uploadPercentage = '0';
   fileList: any[];
+  isLoggedIn = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     $('#modal').on('hidden.bs.modal', () => {
       this.fileInput.nativeElement.value = '';
     });
+
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
   fileInputChange(event) {

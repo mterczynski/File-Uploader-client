@@ -14,6 +14,9 @@ import { ExtIconComponent } from './shared/components/extIcon.component';
 // pipes:
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { AuthService } from './shared/services/auth.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     SearchComponent,
     ExtIconComponent,
     FileSizePipe,
-    TimeAgoPipe
+    TimeAgoPipe,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
