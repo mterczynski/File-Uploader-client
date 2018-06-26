@@ -18,7 +18,9 @@ import { AuthService } from './shared/services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CustomizeComponent } from './customize/customize.component';
-import { ThemerService } from './shared/services/themer.service';
+import { Themer } from './shared/services/themer.service';
+import { LoggedInGuard } from './shared/guards/logged-in.guard';
+import { NotLoggedInGuard } from './shared/guards/not-logged-in.guard';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { ThemerService } from './shared/services/themer.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, ThemerService],
+  providers: [AuthService, Themer, LoggedInGuard, NotLoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
