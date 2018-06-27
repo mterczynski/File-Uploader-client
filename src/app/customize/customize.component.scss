@@ -1,0 +1,24 @@
+.card-container{
+  position: relative;
+  max-width: 960px;
+  margin: 15px auto;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card{
+  position: relative;
+  width: 360px;
+  height: 240px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  transition-duration: 0.3s;
+  &--active{
+    box-shadow: 5px 5px 5px 2px rgba(0, 136, 191, 0.125);
+  }
+
+  &:hover{
+    box-shadow: 5px 5px 5px 2px rgba(0, 136, 191, 0.125);
+  }
+}

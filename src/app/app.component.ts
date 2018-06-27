@@ -1,6 +1,8 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { AuthService } from './shared/services/auth.service';
+import { Subscription } from 'rxjs';
 declare var $: any;
 
 enum uploadState {
@@ -15,7 +17,7 @@ enum uploadState {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   @ViewChild('fileInput') fileInput;
   @ViewChild('tags') tagsInput;
@@ -27,13 +29,28 @@ export class AppComponent implements OnInit {
   uploadState: uploadState = uploadState.before;
   uploadPercentage = '0';
   fileList: any[];
+  authToken: string = null;
+  authEventSubjectSubscription: Subscription;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     $('#modal').on('hidden.bs.modal', () => {
       this.fileInput.nativeElement.value = '';
     });
+    this.authToken = this.authService.getToken();
+    this.authEventSubjectSubscription = this.authService.eventSubject.subscribe(() => {
+      this.authToken = this.authService.getToken();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.authEventSubjectSubscription) {
+      this.authEventSubjectSubscription.unsubscribe();
+    }
   }
 
   fileInputChange(event) {
@@ -45,6 +62,11 @@ export class AppComponent implements OnInit {
 
   getParsedTagString(tagString: string) {
     return tagString.replace(new RegExp(' ', 'g'), '').split(',').filter((el) => el !== '');
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.authToken = null;
   }
 
   onUpload() {

@@ -63,15 +63,56 @@
   <div class="navbar-collapse collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/"><i class="fa fa-home navIcon" aria-hidden="true"></i> Home</a>
+        <a class="nav-link" routerLink="/">
+          <i class="fa fa-home navIcon" aria-hidden="true">
+          </i> Home
+        </a>
       </li>
       <li class="nav-item pointer" (mouseover)="uploadLinkMouseover()" (mouseleave)="uploadLinkMouseleave()">
         <input #fileInput type="file" class="fileInput pointer" multiple
         (change)="fileInputChange($event)">
         <span class="nav-link" [ngClass]="{linkHovered: isUploadLinkHovered}">
-          <i class="fa fa-upload navIcon" aria-hidden="true"></i> Upload
+          <i class="fa fa-upload navIcon" aria-hidden="true"></i>
+          Upload
         </span>
       </li>
+      <!-- Customize -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/customize">
+          <i class="fa fa-magic navIcon" aria-hidden="true"></i>
+          Customize
+        </a>
+      </li>
+
+      <!-- Login/register/account/log out: -->
+      <li class="nav-item" *ngIf="!authToken">
+        <a class="nav-link" routerLink="/login">
+          <i class="fa fa-sign-in navIcon" aria-hidden="true"></i>
+          Log in
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="!authToken">
+        <a class="nav-link" routerLink="/register">
+          <i class="fa fa-user-plus navIcon" aria-hidden="true"></i>
+          Register
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="authToken">
+        <a class="nav-link" routerLink="/account">
+          <i class="fa fa-user navIcon" aria-hidden="true">
+          </i>Account
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="authToken" (click)="logOut()">
+        <span class="nav-link">
+          <i class="fa fa-sign-out navIcon" aria-hidden="true">
+          </i>Log out
+        </span>
+      </li>
+
       <!-- <li class="nav-item">
         <a class="nav-link" routerLink="account">
           <i class="fa fa-user-o navIcon" aria-hidden="true"></i> My account</a>
