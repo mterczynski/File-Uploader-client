@@ -10,7 +10,7 @@ export class LoggedInGuard implements CanActivate {
   ) {}
 
   canActivate() {
-    if (this.authService.isLoggedIn) {
+    if (this.authService.getUser()) {
       return true;
     }
     this.router.navigate(['/login']);

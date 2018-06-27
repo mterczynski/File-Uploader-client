@@ -1,32 +1,60 @@
 <div class="container">
   <h1>Register</h1>
 
-  <form>
+  <form (ngSubmit)="onSubmit(form)" [formGroup]="form" novalidate>
     <div class="form-group">
       <label>Username</label>
-      <input type="text" class="form-control" placeholder="" required>
+
+      <input type="text" class="form-control" formControlName="username">
+
+      <div class="alert alert-danger"
+      *ngIf="form.controls.username.errors && form.controls.username.touched">
+        Username is required
+      </div>
     </div>
 
     <div class="form-group">
       <label>Email</label>
-      <input type="email" class="form-control" placeholder="" required>
+      <input type="email"class="form-control" formControlName="email">
+      <div class="alert alert-danger"
+      *ngIf="form.controls.email.touched && form.controls.email.errors">
+        Email is required
+      </div>
     </div>
 
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" placeholder="" required>
+
+      <input type="password" class="form-control" formControlName="password">
+
+      <div class="alert alert-danger"
+      *ngIf="form.controls.password.touched && form.controls.password.errors">
+        Password must be minimum 8 characters long
+      </div>
     </div>
 
     <div class="form-group">
       <label>Repeat password</label>
-      <input type="password" class="form-control" placeholder="" required>
+
+      <input type="password"
+      class="form-control"
+      formControlName="repeatPassword"
+      >
+
+      <div class="alert alert-danger"
+      *ngIf="form.controls.password.touched && form.controls.repeatPassword.touched && form.controls.password.value != form.controls.repeatPassword.value">
+        Passwords are not the same
+      </div>
     </div>
 
-    <!-- <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
-
     <button type="submit" class="btn btn-primary">Submit</button>
+
+    <span class="successMessage" *ngIf="successMessage">
+      {{successMessage}}
+    </span>
+
+    <span class="errorMessage" *ngIf="errorMessage">
+      {{errorMessage}}
+    </span>
   </form>
 </div>
