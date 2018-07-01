@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Themer } from '../shared/services/themer.service';
 
 @Component({
   selector: 'app-customize',
   templateUrl: './customize.component.html',
   styleUrls: ['./customize.component.scss']
 })
-export class CustomizeComponent implements OnInit {
+export class CustomizeComponent {
 
   themes = [{
     name: 'Cerulean',
     imgUrl: 'https://bootswatch.com/cerulean/thumbnail.png',
-    styleUrl: 'https://bootswatch.com/4/cerulean/bootstrap.min.css'
+    themeUrl: './assets/bootstrap/cerulean.min.css'
   }, {
     name: 'Cosmo',
     imgUrl: 'https://bootswatch.com/cosmo/thumbnail.png',
-    styleUrl: 'https://bootswatch.com/4/cosmo/bootstrap.min.css'
+    themeUrl: './assets/bootstrap/cosmo.min.css'
   }];
 
-  constructor() { }
+  constructor(
+    private themer: Themer
+  ) { }
 
-  ngOnInit() {
+  changeTheme(url) {
+    this.themer.setTheme(url);
   }
 
 }
