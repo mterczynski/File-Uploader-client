@@ -8,6 +8,8 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class AccountComponent implements OnInit {
 
+
+
   user: any;
 
   constructor(private authService: AuthService) { }

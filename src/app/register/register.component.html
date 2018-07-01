@@ -8,7 +8,7 @@
       <input type="text" class="form-control" formControlName="username">
 
       <div class="alert alert-danger"
-      *ngIf="form.controls.username.errors && form.controls.username.touched">
+      *ngIf="form.controls.username.invalid && form.controls.username.touched">
         Username is required
       </div>
     </div>
@@ -17,7 +17,7 @@
       <label>Email</label>
       <input type="email"class="form-control" formControlName="email">
       <div class="alert alert-danger"
-      *ngIf="form.controls.email.touched && form.controls.email.errors">
+      *ngIf="form.controls.email.touched && form.controls.email.invalid">
         Email is required
       </div>
     </div>
@@ -28,7 +28,7 @@
       <input type="password" class="form-control" formControlName="password">
 
       <div class="alert alert-danger"
-      *ngIf="form.controls.password.touched && form.controls.password.errors">
+      *ngIf="form.controls.password.touched && form.controls.password.invalid">
         Password must be minimum 8 characters long
       </div>
     </div>
