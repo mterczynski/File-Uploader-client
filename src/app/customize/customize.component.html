@@ -2,5 +2,6 @@
   <img *ngFor="let theme of themes"
     class="card card"
     [src]="theme.imgUrl"
+    (click)="changeTheme(theme.themeUrl)"
     alt="">
 </div>
