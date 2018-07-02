@@ -1,6 +1,7 @@
 <div class="container">
   <div class="table-responsive">
     <table class="table table-hover">
+
       <thead>
         <tr>
           <th scope="col">Name</th>
@@ -11,28 +12,29 @@
           <th scope="col">Author</th>
         </tr>
       </thead>
+
       <tbody>
 
-          <tr *ngFor="let file of fileList">
-            <td>
-              <a  href="{{serverUrl + '/file/' + file.path}}">
-                {{file.name}}
-              </a>
-            </td>
+        <tr *ngFor="let file of fileList">
+          <td>
+            <a  href="{{serverUrl + '/file/' + file.path}}">
+              {{file.name}}
+            </a>
+          </td>
 
-            <td>
-              <app-ext-icon [attr.fileName]=file.name></app-ext-icon>
-            </td>
-            <td>{{file.size | fileSize}}</td>
-            <td>
-              <span *ngFor="let tag of file.tags; let isLast=last">
-                <span class="tag text-primary">#{{tag}}</span>
-                <span>{{isLast ? '' : ', '}}</span>
-              </span>
-            </td>
-            <td>{{file.uploadDate | timeAgo}}</td>
-            <td>-</td>
-          </tr>
+          <td>
+            <app-ext-icon [attr.fileName]=file.name></app-ext-icon>
+          </td>
+          <td>{{file.size | fileSize}}</td>
+          <td>
+            <span *ngFor="let tag of file.tags; let isLast=last">
+              <span class="tag text-primary">#{{tag}}</span>
+              <span>{{isLast ? '' : ', '}}</span>
+            </span>
+          </td>
+          <td>{{file.uploadDate | timeAgo}}</td>
+          <td>-</td>
+        </tr>
 
       </tbody>
     </table>

@@ -14,7 +14,10 @@
 
 .tag{
   cursor: pointer;
-  // todo hover in component - mouseenter, mouseleave renderer2, add class
+  transition-duration: 0.3s;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 
 .form-group.row{
