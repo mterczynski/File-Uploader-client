@@ -26,7 +26,7 @@
             <td>{{file.size | fileSize}}</td>
             <td>
               <span *ngFor="let tag of file.tags; let isLast=last">
-                <span class="tag">#{{tag}}</span>
+                <span class="tag text-primary">#{{tag}}</span>
                 <span>{{isLast ? '' : ', '}}</span>
               </span>
             </td>

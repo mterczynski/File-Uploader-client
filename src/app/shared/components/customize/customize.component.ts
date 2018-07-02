@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Themer } from '../shared/services/themer.service';
+import { Themer } from '@shared/services/themer.service';
 
 @Component({
   selector: 'app-customize',

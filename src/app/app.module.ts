@@ -2,21 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+// App:
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { AccountComponent } from './account/account.component';
-import { SearchComponent } from './search/search.component';
-
-import { ExtIconComponent } from './shared/components/extIcon.component';
-
-// pipes:
+import { AppRoutingModule } from './app-routing.module';
+// Components:
+import { ExtIconComponent } from './shared/components/extIcon/extIcon.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { AccountComponent } from './shared/components/account/account.component';
+import { SearchComponent } from './shared/components/search/search.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { RegisterComponent } from './shared/components/register/register.component';
+import { CustomizeComponent } from './shared/components/customize/customize.component';
+// Pipes:
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { CustomizeComponent } from './customize/customize.component';
 
 @NgModule({
   declarations: [

@@ -1,0 +1,27 @@
+@import '../../../shared/styles/_variables.scss';
+@import '../../../shared/styles/_breakpoints.scss';
+
+.fileInput{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+.tag{
+  cursor: pointer;
+  // todo hover in component - mouseenter, mouseleave renderer2, add class
+}
+
+.form-group.row{
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container{
+  z-index: 3;
+}
