@@ -9,13 +9,13 @@ enum uploadState {
   before = 'before',
   uploading = 'uploading',
   finished = 'finished',
-  error = 'error'
+  error = 'error',
 }
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.uploadState = uploadState.uploading;
 
     const req = new HttpRequest('POST', environment.apiUrl + '/fileUpload', formData, {
-      reportProgress: true
+      reportProgress: true,
     });
 
     this.http.request(req).subscribe(event => {
