@@ -3,7 +3,7 @@ import { Component, Input, HostBinding } from '@angular/core';
 @Component({
   selector: 'app-ext-icon',
   template: ``,
-  styleUrls: ['extIcons.scss']
+  styleUrls: ['extIcons.scss'],
 })
 export class ExtIconComponent {
   @Input() fileName: string;

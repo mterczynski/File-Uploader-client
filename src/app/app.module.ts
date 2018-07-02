@@ -14,14 +14,9 @@ import { ExtIconComponent } from './shared/components/extIcon.component';
 // pipes:
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { AuthService } from './shared/services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CustomizeComponent } from './customize/customize.component';
-import { Themer } from './shared/services/themer.service';
-import { LoggedInGuard } from './shared/guards/logged-in.guard';
-import { NotLoggedInGuard } from './shared/guards/not-logged-in.guard';
-import { CookieService } from './shared/services/cookie.service';
 
 @NgModule({
   declarations: [
