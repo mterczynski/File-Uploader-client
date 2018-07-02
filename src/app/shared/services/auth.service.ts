@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 
 enum AuthEvent {
   logIn,
-  logOut
+  logOut,
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   private jwtHelper = new JwtHelperService();
   private _eventSubject = new Subject<AuthEvent>();
@@ -35,7 +37,7 @@ export class AuthService {
   logIn({usernameOrEmail, password}) {
     const res = this.http.post(environment.apiUrl + '/login', {
       usernameOrEmail,
-      password
+      password,
     });
 
     return res as Observable<any>;
@@ -63,7 +65,7 @@ export class AuthService {
     const res = this.http.post(environment.apiUrl + '/register', {
       username,
       email,
-      password
+      password,
     });
 
     return res as Observable<any>;

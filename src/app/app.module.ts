@@ -34,16 +34,15 @@ import { CookieService } from './shared/services/cookie.service';
     TimeAgoPipe,
     LoginComponent,
     RegisterComponent,
-    CustomizeComponent
+    CustomizeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [AuthService, Themer, LoggedInGuard, NotLoggedInGuard, CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
