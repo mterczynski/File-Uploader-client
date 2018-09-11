@@ -22,13 +22,10 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput') fileInput;
   @ViewChild('tags') tagsInput;
 
-  isModalVisible = false;
-  isModalAnimationVisible = false;
   isUploadLinkHovered = false;
   selectedFiles: FileList;
   uploadState: uploadState = uploadState.before;
   uploadPercentage = '0';
-  fileList: any[];
   authToken: string = null;
   authEventSubjectSubscription: Subscription;
 
@@ -37,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     $('#modal').on('hidden.bs.modal', () => {
       this.fileInput.nativeElement.value = '';
     });
@@ -94,10 +91,6 @@ export class AppComponent implements OnInit, OnDestroy {
       console.error(err);
       this.uploadState = uploadState.error;
     });
-  }
-
-  preventDefault(event) {
-    event.preventDefault();
   }
 
   showModal() {

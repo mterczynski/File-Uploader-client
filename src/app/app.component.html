@@ -71,7 +71,7 @@
       <li class="nav-item pointer" (mouseover)="uploadLinkMouseover()" (mouseleave)="uploadLinkMouseleave()">
         <input #fileInput type="file" class="fileInput pointer" multiple
         (change)="fileInputChange($event)">
-        <span class="nav-link" [ngClass]="{linkHovered: isUploadLinkHovered}">
+        <span class="nav-link" [class.linkHovered]="isUploadLinkHovered">
           <i class="fa fa-upload navIcon" aria-hidden="true"></i>
           Upload
         </span>

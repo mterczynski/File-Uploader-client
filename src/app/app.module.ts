@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ExtIconComponent } from './shared/components/extIcon/extIcon.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AccountComponent } from './shared/components/account/account.component';
-import { SearchComponent } from './shared/components/search/search.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from './shared/components/register/register.component';
 import { CustomizeComponent } from './shared/components/customize/customize.component';
@@ -22,7 +21,6 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     AppComponent,
     HomeComponent,
     AccountComponent,
-    SearchComponent,
     ExtIconComponent,
     FileSizePipe,
     TimeAgoPipe,

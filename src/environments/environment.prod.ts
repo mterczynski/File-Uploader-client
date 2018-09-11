@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://www.mter.pl:3000'
+  apiUrl: 'http://www.mter.pl:3000',
 };

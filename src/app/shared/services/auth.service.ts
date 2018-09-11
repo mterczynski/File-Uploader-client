@@ -16,7 +16,7 @@ enum AuthEvent {
   providedIn: 'root',
 })
 export class AuthService {
-  private jwtHelper = new JwtHelperService();
+  private jwtHelper = new JwtHelperService(); // todo - try Dependency Injection - try to use Injector, or Provide, useClass
   private _eventSubject = new Subject<AuthEvent>();
 
   public get eventSubject(){
@@ -61,14 +61,11 @@ export class AuthService {
   }
 
   register({username, password, email}) {
-
-    const res = this.http.post(environment.apiUrl + '/register', {
+    return this.http.post<any>(environment.apiUrl + '/register', {
       username,
       email,
       password,
     });
-
-    return res as Observable<any>;
   }
 
 }

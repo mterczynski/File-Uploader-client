@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class CookieService {
 
-  constructor() { }
-
   setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

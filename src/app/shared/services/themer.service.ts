@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class Themer {
 
   setTheme(url) {
-    const linkTag = document.documentElement.querySelector('#theme') as HTMLLinkElement;
+    const linkTag = document.querySelector('#theme') as HTMLLinkElement;
     linkTag.href = url;
 
-    // TODO: update user theme on server - put request?
+    // TODO: save user settings on server (put request?)
   }
 
 }
