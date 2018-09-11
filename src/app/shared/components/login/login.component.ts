@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 interface Form {
@@ -13,29 +13,29 @@ interface Form {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   errorMessage = '';
   successMessage = '';
-  form;
+  form = new FormGroup({
+    usernameOrEmail: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+  isLoading = false;
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder,
     private router: Router,
   ) {}
-
-  ngOnInit() {
-    this.form = new FormGroup({
-      usernameOrEmail: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
-  }
 
   onSubmit({value, valid}: {value: Form, valid: boolean}) {
     if (!valid) {
       return;
     }
+
+    this.isLoading = true;
+    this.successMessage = null;
+    this.errorMessage = null;
 
     this.authService.logIn(value).subscribe((data) => {
       if (data.err) {
@@ -52,7 +52,11 @@ export class LoginComponent implements OnInit {
         this.successMessage = null;
         this.errorMessage = 'Server error';
       }
+      this.isLoading = false;
+    }, (err) => {
+      this.successMessage = null;
+      this.errorMessage = `Could not connect to server`;
+      this.isLoading = false;
     });
   }
-
 }

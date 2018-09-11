@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 interface FormData {
@@ -15,9 +15,14 @@ interface FormData {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    repeatPassword: new FormControl('', [Validators.required]),
+  });
   errorMessage = null;
   successMessage = null;
 
@@ -27,27 +32,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
-    // function passwordMatchValidator(g: FormGroup) {
-    //    return g.controls.password.value === g.controls.repeatPassword.value
-    //       ? null : {'mismatch': true};
-    // }
-
-    this.form = this.formBuilder.group({
-      username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      repeatPassword: new FormControl('', [Validators.required]),
-    },
-      // passwordMatchValidator
-    );
-  }
-
   onSubmit({value, valid}: {value: FormData, valid: boolean}) {
-    if (value.password !== value.repeatPassword) {
-      return;
-    }
-    if (!valid) {
+    if (value.password !== value.repeatPassword || !valid) {
       return;
     }
 
