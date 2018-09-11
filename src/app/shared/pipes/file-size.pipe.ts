@@ -18,7 +18,7 @@ export class FileSizePipe implements PipeTransform {
     'MB',
     'GB',
     'TB',
-    'PB'
+    'PB',
   ];
 
   transform(bytes: number = 0, precision: number = 0 ): string {

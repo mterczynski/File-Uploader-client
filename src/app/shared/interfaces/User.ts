@@ -1,6 +1,6 @@
 export interface User {
-    name: string;
-    email: string;
-    whenCreated: Date;
-    fileUrls: [string];
+  name: string;
+  email: string;
+  whenCreated: Date;
+  fileUrls: [string];
 }

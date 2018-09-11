@@ -60,7 +60,7 @@ export class AuthService {
     return null;
   }
 
-  register({username, password, email}) {
+  register({username, password, email}: {username: string, password: string, email: string}) {
     return this.http.post<any>(environment.apiUrl + '/register', {
       username,
       email,
