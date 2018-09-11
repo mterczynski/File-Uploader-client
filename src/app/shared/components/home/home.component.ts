@@ -10,11 +10,12 @@ import { environment } from '../../../../environments/environment';
 export class HomeComponent implements OnInit {
 
   private fileList = [];
+  private serverUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<any[]>(environment.apiUrl + '/files').subscribe((data) => {
+    this.http.get<any[]>(this.serverUrl + '/files').subscribe((data) => {
       this.fileList = data;
       this.fileList.forEach((file) => {
         file.uploadDate = new Date(new Date(file.uploadDate).getTime());
