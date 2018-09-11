@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  private fileList = [];
+  fileList = [];
   private serverUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
