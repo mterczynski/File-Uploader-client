@@ -42,7 +42,9 @@
       >
 
       <div class="alert alert-danger"
-      *ngIf="form.controls.password.touched && form.controls.repeatPassword.touched && form.controls.password.value != form.controls.repeatPassword.value">
+      *ngIf="form.controls.password.touched &&
+      form.controls.repeatPassword.touched &&
+      form.controls.password.value != form.controls.repeatPassword.value">
         Passwords are not the same
       </div>
     </div>
