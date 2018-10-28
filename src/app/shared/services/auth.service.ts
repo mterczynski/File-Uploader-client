@@ -19,22 +19,22 @@ export class AuthService {
   private jwtHelper = new JwtHelperService(); // todo - try Dependency Injection - try to use Injector, or Provide, useClass
   private _eventSubject = new Subject<AuthEvent>();
 
-  public get eventSubject(){
-    return this._eventSubject;
-  }
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
     private router: Router,
-  ) {}
+  ) { }
+
+  get eventSubject() {
+    return this._eventSubject;
+  }
 
   saveToken(token) {
     this.cookieService.setCookie('token', token, 5);
     this.eventSubject.next(AuthEvent.logIn);
   }
 
-  logIn({usernameOrEmail, password}) {
+  logIn({ usernameOrEmail, password }) {
     const res = this.http.post(environment.apiUrl + '/login', {
       usernameOrEmail,
       password,
@@ -60,7 +60,7 @@ export class AuthService {
     return null;
   }
 
-  register({username, password, email}: {username: string, password: string, email: string}) {
+  register({ username, password, email }: { username: string, password: string, email: string }) {
     return this.http.post<any>(environment.apiUrl + '/register', {
       username,
       email,

@@ -16,7 +16,9 @@
       "dom"
     ],
     "paths": {
-      "baseUrl": ["src"],
+      "baseUrl": [
+        "src"
+      ],
       "@shared/*": [
         "app/shared/*"
       ]

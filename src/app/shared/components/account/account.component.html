@@ -1,13 +1,19 @@
 <div class="container">
   <table class="table">
+
+    <tr>
+      <td>Name</td>
+      <td>{{ user.name }}</td>
+    </tr>
+
     <tr>
       <td>Email</td>
       <td>{{ user.email }}</td>
     </tr>
 
     <tr>
-      <td>Name</td>
-      <td>{{ user.name }}</td>
+      <td>Avatar</td>
+      <td><img [src]="user.avatarUrl" alt=""></td>
     </tr>
 
     <tr>
@@ -16,5 +22,6 @@
         <!-- Todo: get files uploaded by user: -->
       </td>
     </tr>
+
   </table>
 </div>
