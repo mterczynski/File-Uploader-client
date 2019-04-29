@@ -11,7 +11,7 @@ import { ExtIconComponent } from './shared/components/extIcon/extIcon.component'
 import { HomeComponent } from './shared/components/home/home.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from './shared/components/register/register.component';
-import { FileSizePipe } from './shared/pipes/file-size.pipe';
+import { FileSizePipe } from './shared/pipes/file-size/file-size.pipe';
 
 @NgModule({
   declarations: [
