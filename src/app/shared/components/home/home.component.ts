@@ -23,4 +23,10 @@ export class HomeComponent implements OnInit {
       });
     });
   }
+
+  onDeleteButtonClick(removedFile: any) {
+    this.http.post(this.serverUrl + `/files/remove/${removedFile._id}`, {}).subscribe(data => {
+      this.fileList = this.fileList.filter(file => file._id !== removedFile._id);
+    });
+  }
 }

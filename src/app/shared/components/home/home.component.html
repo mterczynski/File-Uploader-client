@@ -9,6 +9,7 @@
           <th scope="col">Size</th>
           <th scope="col">Tags</th>
           <th scope="col">Date</th>
+          <th scope="col"></th>
         </tr>
       </thead>
 
@@ -32,6 +33,11 @@
             </span>
           </td>
           <td>{{file.uploadDate | timeAgo}}</td>
+          <td>
+            <button type="button" class="delete-button" (click)="onDeleteButtonClick(file)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
         </tr>
 
       </tbody>
