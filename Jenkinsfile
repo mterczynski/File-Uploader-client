@@ -12,12 +12,6 @@ pipeline {
       }
     }
 
-    stage('Unit tests') {
-      steps {
-        sh "yarn test"
-      }
-    }
-
     stage('Build') {
       steps {
         sh "yarn build"
