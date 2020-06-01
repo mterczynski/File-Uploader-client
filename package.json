@@ -1,15 +1,13 @@
 {
   "name": "file-uploader-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --open",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular-devkit/core": "^0.5.10",
     "@angular/animations": "^6.0.7",
