@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   fileList: ApplicationFile[] = [];
+  serverUrl = environment.apiUrl;
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
