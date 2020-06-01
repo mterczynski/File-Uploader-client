@@ -1,32 +1,40 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { FileService } from '../../services/file.service';
+import { ApplicationFile } from '../../types/application-file';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  fileList = [];
+  fileList: ApplicationFile[] = [];
   private serverUrl = environment.apiUrl;
+  private subscriptions: Subscription[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private fileService: FileService,
+  ) { }
 
   ngOnInit() {
-    this.http.get<any[]>(this.serverUrl + '/files').subscribe((data) => {
-      this.fileList = data;
+    const fileStreamSub = this.fileService.files.subscribe(files => this.fileList = files);
 
-      this.fileList.forEach((file) => {
-        file.uploadDate = new Date(new Date(file.uploadDate).getTime());
-      });
+    this.fileService.requestFilesUpdate();
+    this.subscriptions.push(fileStreamSub);
+  }
+
+  onDeleteButtonClick(removedFile: ApplicationFile) {
+    this.http.post(this.serverUrl + `/files/remove/${removedFile.id}`, {}).subscribe(data => {
+      this.fileList = this.fileList.filter(file => file.id !== removedFile.id);
     });
   }
 
-  onDeleteButtonClick(removedFile: any) {
-    this.http.post(this.serverUrl + `/files/remove/${removedFile._id}`, {}).subscribe(data => {
-      this.fileList = this.fileList.filter(file => file._id !== removedFile._id);
-    });
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
