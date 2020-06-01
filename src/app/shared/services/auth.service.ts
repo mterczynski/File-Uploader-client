@@ -19,7 +19,7 @@ export class AuthService {
   private jwtHelper = new JwtHelperService(); // todo - try Dependency Injection - try to use Injector, or Provide, useClass
   private _eventSubject = new Subject<AuthEvent>();
 
-  public get eventSubject(){
+  public get eventSubject() {
     return this._eventSubject;
   }
 
