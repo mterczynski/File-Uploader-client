@@ -8,8 +8,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
 enum AuthEvent {
-  logIn,
-  logOut,
+  logIn = 'logIn',
+  logOut = 'logOut',
 }
 
 @Injectable({

@@ -6,7 +6,7 @@ import { FileService } from './shared/services/file.service';
 
 declare var $: any;
 
-enum uploadState {
+enum UploadState {
   before = 'before',
   uploading = 'uploading',
   finished = 'finished',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isUploadLinkHovered = false;
   selectedFiles: FileList;
-  uploadState: uploadState = uploadState.before;
+  uploadState = UploadState.before;
   uploadPercentage = '0';
   authToken: string = null;
   authEventSubjectSubscription: Subscription;
@@ -70,24 +70,24 @@ export class AppComponent implements OnInit, OnDestroy {
     const tagString = this.tagsInput.nativeElement.value;
     const tags = this.getFileTagList(tagString);
 
-    this.uploadState = uploadState.uploading;
+    this.uploadState = UploadState.uploading;
 
     this.fileService.getUploadFilesRequest({tags, selectedFiles: this.selectedFiles})
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.uploadPercentage = (100 * event.loaded / event.total).toFixed(2);
         } else if (event instanceof HttpResponse) {
-          this.uploadState = uploadState.finished;
+          this.uploadState = UploadState.finished;
         }
       }, (err) => {
         console.error(err);
-        this.uploadState = uploadState.error;
+        this.uploadState = UploadState.error;
       });
   }
 
   showModal() {
     $('#modal').modal();
-    this.uploadState = uploadState.before;
+    this.uploadState = UploadState.before;
     this.uploadPercentage = '0';
   }
 
