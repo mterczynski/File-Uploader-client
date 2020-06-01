@@ -12,12 +12,6 @@ pipeline {
       }
     }
 
-    stage('TSLint') {
-      steps {
-        sh "yarn lint"
-      }
-    }
-
     stage('Unit tests') {
       steps {
         sh "yarn test"
