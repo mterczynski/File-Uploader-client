@@ -15,8 +15,6 @@ pipeline {
     stage('Build') {
       steps {
         sh "yarn build"
-        archiveArtifacts artifacts: 'dist'
-        archiveArtifacts artifacts: 'package.json'
       }
     }
 
