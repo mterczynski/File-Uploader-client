@@ -11,10 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   fileList: ApplicationFile[] = [];
-  private serverUrl = environment.apiUrl;
-  private subscriptions: Subscription[] = [];
+  private readonly subscriptions: Subscription[] = [];
 
   constructor(
     private http: HttpClient,
@@ -28,10 +26,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(fileStreamSub);
   }
 
-  onDeleteButtonClick(removedFile: ApplicationFile) {
-    this.http.post(this.serverUrl + `/files/remove/${removedFile.id}`, {}).subscribe(data => {
-      this.fileList = this.fileList.filter(file => file.id !== removedFile.id);
-    });
+  onDeleteButtonClick(fileToRemove: ApplicationFile) {
+    this.fileService.removeFile(fileToRemove);
   }
 
   ngOnDestroy() {

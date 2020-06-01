@@ -1,8 +1,9 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
 import { Subscription } from 'rxjs';
+import { FileService } from './shared/services/file.service';
+
 declare var $: any;
 
 enum uploadState {
@@ -18,7 +19,6 @@ enum uploadState {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-
   @ViewChild('fileInput') fileInput;
   @ViewChild('tags') tagsInput;
 
@@ -30,8 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
   authEventSubjectSubscription: Subscription;
 
   constructor(
-    private http: HttpClient,
     private authService: AuthService,
+    private fileService: FileService,
   ) {}
 
   ngOnInit() {
@@ -50,14 +50,14 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  fileInputChange(event) {
+  fileInputChange(event: any) {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles.length > 0) {
       this.showModal();
     }
   }
 
-  getParsedTagString(tagString: string) {
+  getFileTagList(tagString: string) {
     return tagString.replace(new RegExp(' ', 'g'), '').split(',').filter((el) => el !== '');
   }
 
@@ -68,29 +68,21 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onUpload() {
     const tagString = this.tagsInput.nativeElement.value;
-    const formData = new FormData();
-    Array.from(this.selectedFiles).forEach((file) => {
-      formData.append('files[]', file, file.name);
-    });
-
-    formData.append('tags', JSON.stringify(this.getParsedTagString(tagString)));
+    const tags = this.getFileTagList(tagString);
 
     this.uploadState = uploadState.uploading;
 
-    const req = new HttpRequest('POST', environment.apiUrl + '/fileUpload', formData, {
-      reportProgress: true,
-    });
-
-    this.http.request(req).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.uploadPercentage = (100 * event.loaded / event.total).toFixed(2);
-      } else if (event instanceof HttpResponse) {
-        this.uploadState = uploadState.finished;
-      }
-    }, (err) => {
-      console.error(err);
-      this.uploadState = uploadState.error;
-    });
+    this.fileService.getUploadFilesRequest({tags, selectedFiles: this.selectedFiles})
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.uploadPercentage = (100 * event.loaded / event.total).toFixed(2);
+        } else if (event instanceof HttpResponse) {
+          this.uploadState = uploadState.finished;
+        }
+      }, (err) => {
+        console.error(err);
+        this.uploadState = uploadState.error;
+      });
   }
 
   showModal() {
