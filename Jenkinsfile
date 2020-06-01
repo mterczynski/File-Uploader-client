@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  options { disableConcurrentBuilds() }
 
   environment {
     DESTINATION = "root@mterczynski.pl:/var/www/fileUploader_v2/client"
