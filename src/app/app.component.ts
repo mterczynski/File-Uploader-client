@@ -3,6 +3,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
 import { Subscription } from 'rxjs';
 import { FileService } from './shared/services/file.service';
+import { getFileTagList } from '@shared/utils';
 
 declare var $: any;
 
@@ -23,10 +24,10 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('tags') tagsInput;
 
   isUploadLinkHovered = false;
-  selectedFiles: FileList;
+  selectedFiles: FileList | undefined;
   uploadState = UploadState.before;
   uploadPercentage = '0';
-  authToken: string = null;
+  authToken: AuthToken | null = null;
   authEventSubjectSubscription: Subscription;
 
   constructor(
@@ -50,15 +51,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  fileInputChange(event: any) {
+  onFileInputChange(event: any) {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles.length > 0) {
       this.showModal();
     }
-  }
-
-  getFileTagList(tagString: string) {
-    return tagString.replace(new RegExp(' ', 'g'), '').split(',').filter((el) => el !== '');
   }
 
   logOut() {
@@ -68,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onUpload() {
     const tagString = this.tagsInput.nativeElement.value;
-    const tags = this.getFileTagList(tagString);
+    const tags = getFileTagList(tagString);
 
     this.uploadState = UploadState.uploading;
 
@@ -91,11 +88,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.uploadPercentage = '0';
   }
 
-  uploadLinkMouseleave() {
+  onUploadLinkMouseLeave() {
     this.isUploadLinkHovered = false;
   }
 
-  uploadLinkMouseover() {
+  onUploadLinkMouseOver() {
     this.isUploadLinkHovered = true;
   }
 

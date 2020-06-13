@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { FileService } from '../../services/file.service';
@@ -11,12 +10,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private readonly subscriptions: Subscription[] = [];
   fileList: ApplicationFile[] = [];
   serverUrl = environment.apiUrl;
-  private readonly subscriptions: Subscription[] = [];
 
   constructor(
-    private http: HttpClient,
     private fileService: FileService,
   ) { }
 

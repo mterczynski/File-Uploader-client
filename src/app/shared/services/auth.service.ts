@@ -47,14 +47,11 @@ export class AuthService {
   }
 
   getToken() {
-    return this.cookieService.getCookie('token');
+    return this.jwtHelper.decodeToken(this.cookieService.getCookie('token')) as AuthToken;
   }
 
   getUser(): AuthToken | null {
-    if (this.getToken()) {
-      return this.jwtHelper.decodeToken(this.getToken()) as AuthToken;
-    }
-    return null;
+    return this.getToken() || null;
   }
 
   register({username, password, email}: {username: string, password: string, email: string}) {
