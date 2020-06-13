@@ -5,7 +5,4 @@ import { Component, Input, HostBinding } from '@angular/core';
   template: ``,
   styleUrls: ['extIcons.scss'],
 })
-export class ExtIconComponent {
-  @Input() fileName: string;
-  @HostBinding('class.extIcon') true;
-}
+export class ExtIconComponent {}
