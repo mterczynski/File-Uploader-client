@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Themer {
-  setTheme(url) {
+  setTheme(url: string) {
     const linkTag = document.querySelector('#theme') as HTMLLinkElement;
     linkTag.href = url;
 

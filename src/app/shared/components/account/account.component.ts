@@ -7,7 +7,6 @@ import { AuthService } from '@shared/services/auth.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-
   user: any;
 
   constructor(private authService: AuthService) { }

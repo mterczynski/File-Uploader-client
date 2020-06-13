@@ -8,15 +8,13 @@ import { themes } from '../../constants/themes';
   styleUrls: ['./customize.component.scss'],
 })
 export class CustomizeComponent {
-
   themes = themes;
 
   constructor(
     private themer: Themer,
   ) { }
 
-  changeTheme(url) {
+  changeTheme(url: string) {
     this.themer.setTheme(url);
   }
-
 }

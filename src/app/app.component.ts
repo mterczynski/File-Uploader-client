@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.fileInput.nativeElement.value = '';
     });
     this.authToken = this.authService.getToken();
-    this.authEventSubjectSubscription = this.authService.eventSubject.subscribe(() => {
+    this.authEventSubjectSubscription = this.authService.authEvents.subscribe(() => {
       this.authToken = this.authService.getToken();
     });
   }

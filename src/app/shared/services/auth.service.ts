@@ -16,10 +16,10 @@ enum AuthEvent {
 })
 export class AuthService {
   private jwtHelper = new JwtHelperService(); // todo - try Dependency Injection - try to use Injector, or Provide, useClass
-  private _eventSubject = new Subject<AuthEvent>();
+  private _authEvents = new Subject<AuthEvent>();
 
-  public get eventSubject() {
-    return this._eventSubject;
+  public get authEvents() {
+    return this._authEvents.asObservable();
   }
 
   constructor(
@@ -28,9 +28,9 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  saveToken(token) {
+  saveToken(token: AuthToken) {
     this.cookieService.setCookie('token', token, 5);
-    this.eventSubject.next(AuthEvent.logIn);
+    this._authEvents.next(AuthEvent.logIn);
   }
 
   logIn({usernameOrEmail, password}) {
@@ -43,16 +43,16 @@ export class AuthService {
   logOut() {
     this.cookieService.removeCookie('token');
     this.router.navigate(['/']);
-    this.eventSubject.next(AuthEvent.logOut);
+    this._authEvents.next(AuthEvent.logOut);
   }
 
   getToken() {
     return this.cookieService.getCookie('token');
   }
 
-  getUser() {
+  getUser(): AuthToken | null {
     if (this.getToken()) {
-      return this.jwtHelper.decodeToken(this.getToken());
+      return this.jwtHelper.decodeToken(this.getToken()) as AuthToken;
     }
     return null;
   }
