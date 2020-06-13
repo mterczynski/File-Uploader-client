@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CookieService } from './cookie.service';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -35,12 +34,10 @@ export class AuthService {
   }
 
   logIn({usernameOrEmail, password}) {
-    const res = this.http.post(environment.apiUrl + '/login', {
+    return this.http.post<any>(environment.apiUrl + '/login', {
       usernameOrEmail,
       password,
     });
-
-    return res as Observable<any>;
   }
 
   logOut() {
