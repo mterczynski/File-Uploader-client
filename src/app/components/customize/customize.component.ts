@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Themer } from '@shared/services/themer.service';
+import { Themer } from '../../services/themer.service';
 import { themes } from '../../constants/themes';
 
 @Component({

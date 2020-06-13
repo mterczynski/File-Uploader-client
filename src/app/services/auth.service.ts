@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { CookieService } from './cookie.service';
 import { Subject } from 'rxjs/Subject';
 import { JwtHelperService } from '@auth0/angular-jwt';

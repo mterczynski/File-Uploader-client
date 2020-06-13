@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { ApplicationFile } from '../types/application-file';
 import {tap} from 'rxjs/operators';
 

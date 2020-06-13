@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
-import { FileService } from './shared/services/file.service';
-import { getFileTagList } from '@shared/utils';
+import { FileService } from './services/file.service';
+import { getFileTagList } from 'app/utils';
 
 declare var $: any;
 

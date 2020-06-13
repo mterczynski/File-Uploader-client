@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { FileService } from '../../services/file.service';
 import { ApplicationFile } from '../../types/application-file';
 import { Subscription } from 'rxjs';
